@@ -1,12 +1,13 @@
-
+var pauseflag = true;
+	
 // here it's simple you have to just change your  date !!!
 $(document).ready(function() {
-	$("#count").countdown({
+	/*$("#count").countdown({
 		//to change date just replace the current date with yours .
 		date: "2015-08-15 22:50:12", 
 		//html code in count div here.
 		htmlTemplate: "<div id='days-count' class='numbers'>%{d}<span class='days-label'>days</span></div> <div id='hours-count' class='numbers'>%{h}<span class='hours-label'>hours</span></div><div id='min-count' class='numbers'>%{m}<span class='min-label'>min</span></div><div id='sec-count' class='numbers'>%{s}<span class='sec-label'>sec</span></div>"
-	});
+	});*/
 });
 
 $("#mail-submit").live("click",function(){
@@ -29,10 +30,29 @@ $("#mail-submit").live("click",function(){
 		//date: "2016/8/12 22:50:12", 
 		date:now.toUTCString(),
 		//html code in count div here.
+		
 		htmlTemplate: "<div id='days-count' class='numbers'>%{d}<span class='days-label'>days</span></div> <div id='hours-count' class='numbers'>%{h}<span class='hours-label'>hours</span></div><div id='min-count' class='numbers'>%{m}<span class='min-label'>min</span></div><div id='sec-count' class='numbers'>%{s}<span class='sec-label'>sec</span></div>"
 	});
+	document.getElementById("timeup").src = "";
 });
 
+$("#mail-pause").live("click",function(){
+	//alert("1");
+	if (pauseflag){
+		$("#count").countdown("pause");
+		$("#mail-pause").val("Resume");
+		pauseflag = false;	
+	}else{
+		$("#count").countdown("resume");
+		$("#mail-pause").val("Pause");
+		pauseflag = true;
+	}
+});
+
+function timeup(){
+	alert("hi");
+	document.getElementById("timeup").play();
+}
 ////////////////////show-hide tools panel////////////////////////
 $("#show-hide").live("click", function(){ 
 	if ($('#tools').is(':visible'))
